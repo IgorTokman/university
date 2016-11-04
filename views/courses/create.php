@@ -12,6 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'title') ?>
+<!--        --><?//= $form->field($model, 'students')->dropDownList(\app\models\Students::getList(), ['multiple' => true]) ?>
         <?= $form->field($model, 'start_date') ?>
         <?= $form->field($model, 'end_date') ?>
     

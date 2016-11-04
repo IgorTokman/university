@@ -15,7 +15,7 @@ use yii\widgets\LinkPager;
     <ul class="list-group">
         <?php foreach ($students as $student):?>
             <li class="list-group-item">
-                <a href="/index.php?r=students/index"><?=$student->name?></a>
+                <a href="/index.php?r=courses/index&idstudent=<?= $student->idstudents?>"><?= $student->name?></a>
             </li>
         <?php endforeach;?>
     </ul>
