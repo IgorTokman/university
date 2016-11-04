@@ -63,9 +63,26 @@ class CoursesController extends \yii\web\Controller
         ]);
     }
 
-    public function actionUpdate()
+    public function actionUpdate($idcourse)
     {
-        return $this->render('update');
+
+        $course = Courses::findOne($idcourse);
+
+        if ($course->load(Yii::$app->request->post())) {
+            if ($course->validate()) {
+                // form inputs are valid, do something here
+                $course->save();
+
+                //Sends message
+                Yii::$app->getSession()->setFlash('success', 'Course Updated');
+
+                return $this->redirect('/index.php?r=courses/index');
+            }
+        }
+
+        return $this->render('update', [
+            'model' => $course,
+        ]);
     }
 
 }

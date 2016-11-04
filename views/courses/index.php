@@ -18,6 +18,7 @@ use yii\widgets\LinkPager;
             <li class="list-group-item">
                 <a href="/index.php?r=students/index&idcourse=<?= $course->idcourses?>"><?= $course->title?></a>
                 <a href="index.php?r=courses/delete&idcourse=<?= $course->idcourses?>" class="btn btn-danger btn-sm pull-right">Delete</a>
+                <a href="index.php?r=courses/update&idcourse=<?= $course->idcourses?>" class="btn btn-info btn-sm pull-right">Edit</a>
             </li>
         <?php endforeach;?>
     </ul>
