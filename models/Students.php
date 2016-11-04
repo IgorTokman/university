@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use app\components\ManyToManyBehavior;
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "students".
@@ -17,6 +19,7 @@ use Yii;
  */
 class Students extends \yii\db\ActiveRecord
 {
+    
     /**
      * @inheritdoc
      */
@@ -31,6 +34,7 @@ class Students extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['courses'], 'required'],
             [['name', 'address', 'phone'], 'required'],
             [['name', 'address'], 'string', 'max' => 45],
             [['phone'], 'string', 'max' => 20],
@@ -43,6 +47,7 @@ class Students extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'courses' => 'Courses',
             'idstudents' => 'Idstudents',
             'name' => 'Name',
             'address' => 'Address',
@@ -64,5 +69,12 @@ class Students extends \yii\db\ActiveRecord
     public function getCoursesIdcourses()
     {
         return $this->hasMany(Courses::className(), ['idcourses' => 'courses_idcourses'])->viaTable('students_has_courses', ['students_idstudents' => 'idstudents']);
+    }
+
+    public static function getList()
+    {
+        $models = static::find()->orderBy('name')->all();
+
+        return ArrayHelper::map($models, 'idstudents', 'name');
     }
 }

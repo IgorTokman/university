@@ -1,9 +1,24 @@
 <?php
 /* @var $this yii\web\View */
-?>
-<h1>students/index</h1>
+use yii\widgets\LinkPager;
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+?>
+<h1 class="page-header">
+        Students
+        <a href="index.php?r=students/create" class="btn btn-primary pull-right">Create</a>
+</h1>
+
+<?php if(null !== Yii::$app->session->getFlash('success')):?>
+    <div class="alert alert-success"><?=Yii::$app->session->getFlash('success')?></div>
+<?php endif;?>
+
+    <ul class="list-group">
+        <?php foreach ($students as $student):?>
+            <li class="list-group-item">
+                <a href="/index.php?r=courses/index&idstudent=<?= $student->idstudents?>"><?= $student->name?></a>
+            </li>
+        <?php endforeach;?>
+    </ul>
+
+
+<?= LinkPager::widget(['pagination' => $pagination])?>

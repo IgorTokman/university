@@ -1,9 +1,24 @@
 <?php
-/* @var $this yii\web\View */
-?>
-<h1>courses/create</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Courses */
+/* @var $form ActiveForm */
+?>
+<div class="courses-create">
+
+    <?php $form = ActiveForm::begin(); ?>
+
+        <?= $form->field($model, 'title') ?>
+<!--        --><?//= $form->field($model, 'students')->dropDownList(\app\models\Students::getList(), ['multiple' => true]) ?>
+        <?= $form->field($model, 'start_date') ?>
+        <?= $form->field($model, 'end_date') ?>
+    
+        <div class="form-group">
+            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+        </div>
+    <?php ActiveForm::end(); ?>
+
+</div><!-- courses-create -->
