@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "courses".
@@ -64,5 +65,12 @@ class Courses extends \yii\db\ActiveRecord
     public function getStudentsIdstudents()
     {
         return $this->hasMany(Students::className(), ['idstudents' => 'students_idstudents'])->viaTable('students_has_courses', ['courses_idcourses' => 'idcourses']);
+    }
+
+    public static function getList()
+    {
+        $models = static::find()->orderBy('title')->all();
+
+        return ArrayHelper::map($models, 'idcourses', 'title');
     }
 }

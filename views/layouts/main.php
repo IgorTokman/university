@@ -40,6 +40,7 @@ AppAsset::register($this);
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Courses', 'url' => ['/courses/index']],
             ['label' => 'Students', 'url' => ['/students/index']],
+            ['label' => 'Add User2Course', 'url' => ['/students-has-courses/create']],
         ],
     ]);
 
